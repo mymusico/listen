@@ -1,1 +1,414 @@
-<center><h1>UNDER CONSTRUCTION</h1></center>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Mymusico - Your ultimate music streaming destination with links to all major platforms">
+    <meta name="keywords" content="music streaming, Spotify, YouTube Music, Amazon Music, Deezer, Tidal, SoundCloud, mymusico">
+    <meta name="author" content="Mymusico">
+    <title>Mymusico - Stream Music Everywhere</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #000000;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 30px 0;
+            border-bottom: 2px solid #FFD700;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #FFD700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+        }
+
+        .track-list {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .track-item {
+            display: flex;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .track-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(255, 215, 0, 0.2);
+        }
+
+        .track-image {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-right: 2px solid #FFD700;
+        }
+
+        .track-info {
+            flex: 1;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .track-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #ffffff;
+        }
+
+        .track-artist {
+            font-size: 0.9rem;
+            color: #cccccc;
+            margin-bottom: 5px;
+        }
+
+        .track-duration {
+            font-size: 0.85rem;
+            color: #FFD700;
+            font-weight: 500;
+        }
+
+        .stream-buttons {
+            display: flex;
+            gap: 10px;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.3);
+            border-top: 1px solid #333333;
+        }
+
+        .stream-btn {
+            flex: 1;
+            padding: 8px 12px;
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            color: #000000;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .stream-btn:hover {
+            background: linear-gradient(135deg, #FFA500 0%, #FF8C00 100%);
+            transform: scale(1.05);
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+            gap: 10px;
+        }
+
+        .page-btn {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: #FFD700;
+            border: 2px solid #FFD700;
+            border-radius: 50%;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .page-btn:hover, .page-btn.active {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            color: #000000;
+            transform: scale(1.1);
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+            border-top: 1px solid #333333;
+            color: #666666;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .track-item {
+                flex-direction: column;
+            }
+            
+            .track-image {
+                width: 100%;
+                height: 150px;
+                border-right: none;
+                border-bottom: 2px solid #FFD700;
+            }
+            
+            .stream-buttons {
+                flex-wrap: wrap;
+            }
+            
+            .stream-btn {
+                flex: 1 1 calc(50% - 5px);
+                min-width: 120px;
+            }
+            
+            .pagination {
+                flex-wrap: wrap;
+            }
+            
+            .page-btn {
+                width: 35px;
+                height: 35px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stream-btn {
+                flex: 1 1 calc(100% - 5px);
+                min-width: 100px;
+            }
+            
+            .logo {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">mymusico</div>
+        </header>
+
+        <main class="track-list">
+            <!-- Track 1 -->
+            <article class="track-item">
+                <img src="https://placehold.co/80x80/FFD700/000000?text=Album+1" alt="Album Cover 1" class="track-image">
+                <div class="track-info">
+                    <h3 class="track-title">Midnight Dreams</h3>
+                    <p class="track-artist">The Velvet Echoes</p>
+                    <p class="track-duration">4:32</p>
+                </div>
+                <div class="stream-buttons">
+                    <a href="https://music.youtube.com/" class="stream-btn" target="_blank" rel="noopener noreferrer">YouTube</a>
+                    <a href="https://open.spotify.com/" class="stream-btn" target="_blank" rel="noopener noreferrer">Spotify</a>
+                    <a href="https://music.amazon.com/" class="stream-btn" target="_blank" rel="noopener noreferrer">Amazon</a>
+                    <a href="https://www.deezer.com/" class="stream-btn" target="_blank" rel="noopener noreferrer">Deezer</a>
+                    <a href="https://tidal.com/" class="stream-btn" target="_blank" rel="noopener noreferrer">Tidal</a>
+                    <a href="https://soundcloud.com/" class="stream-btn" target="_blank" rel="noopener noreferrer">SoundCloud</a>
+                </div>
+            </article>
+
+            <!-- Track 2 -->
+            <article class="track-item">
+                <img src="https://placehold.co/80x80/FFD700/000000?text=Album+2" alt="Album Cover 2" class="track-image">
+                <div class="track-info">
+                    <h3 class="track-title">Electric Sunrise</h3>
+                    <p class="track-artist">Neon Pulse</p>
+                    <p class="track-duration">3:45</p>
+                </div>
+                <div class="stream-buttons">
+                    <a href="https://music.youtube.com/" class="stream-btn" target="_blank" rel="noopener noreferrer">YouTube</a>
+                    <a href="https://open.spotify.com/" class="stream-btn" target="_blank" rel="noopener noreferrer">Spotify</a>
+                    <a href="https://music.amazon.com/" class="stream-btn" target="_blank" rel="noopener noreferrer">Amazon</a>
+                    <a href="https://www.deezer.com/" class="stream-btn" target="_blank" rel="noopener noreferrer">Deezer</a>
+                    <a href="https://tidal.com/" class="stream-btn" target="_blank" rel="noopener noreferrer">Tidal</a>
+                    <a href="https://soundcloud.com/" class="stream-btn" target="_blank" rel="noopener noreferrer">SoundCloud</a>
+                </div>
+            </article>
+
+            <!-- Track 3 -->
+            <article class="track-item">
+                <img src="https://placehold.co/80x80/FFD700/000000?text=Album+3" alt="Album Cover 3" class="track-image">
+                <div class="track-info">
+                    <h3 class="track-title">Ocean Waves</h3>
+                    <p class="track-artist">Azure Skies</p>
+                    <p class="track-duration">5:12</p>
+                </div>
+                <div class="stream-buttons">
+                    <a href="https://music.youtube.com/" class="stream-btn" target="_blank" rel="noopener noreferrer">YouTube</a>
+                    <a href="https://open.spotify.com/" class="stream-btn" target="_blank" rel="noopener noreferrer">Spotify</a>
+                    <a href="https://music.amazon.com/" class="stream-btn" target="_blank" rel="noopener noreferrer">Amazon</a>
+                    <a href="https://www.deezer.com/" class="stream-btn" target="_blank" rel="noopener noreferrer">Deezer</a>
+                    <a href="https://tidal.com/" class="stream-btn" target="_blank" rel="noopener noreferrer">Tidal</a>
+                    <a href="https://soundcloud.com/" class="stream-btn" target="_blank" rel="noopener noreferrer">SoundCloud</a>
+                </div>
+            </article>
+
+            <!-- Track 4 -->
+            <article class="track-item">
+                <img src="https://placehold.co/80x80/FFD700/000000?text=Album+4" alt="Album Cover 4" class="track-image">
+                <div class="track-info">
+                    <h3 class="track-title">Urban Jungle</h3>
+                    <p class="track-artist">City Lights Collective</p>
+                    <p class="track-duration">4:18</p>
+                </div>
+                <div class="stream-buttons">
+                    <a href="https://music.youtube.com/" class="stream-btn" target="_blank" rel="noopener noreferrer">YouTube</a>
+                    <a href="https://open.spotify.com/" class="stream-btn" target="_blank" rel="noopener noreferrer">Spotify</a>
+                    <a href="https://music.amazon.com/" class="stream-btn" target="_blank" rel="noopener noreferrer">Amazon</a>
+                    <a href="https://www.deezer.com/" class="stream-btn" target="_blank" rel="noopener noreferrer">Deezer</a>
+                    <a href="https://tidal.com/" class="stream-btn" target="_blank" rel="noopener noreferrer">Tidal</a>
+                    <a href="https://soundcloud.com/" class="stream-btn" target="_blank" rel="noopener noreferrer">SoundCloud</a>
+                </div>
+            </article>
+
+            <!-- Track 5 -->
+            <article class="track-item">
+                <img src="https://placehold.co/80x80/FFD700/000000?text=Album+5" alt="Album Cover 5" class="track-image">
+                <div class="track-info">
+                    <h3 class="track-title">Stellar Journey</h3>
+                    <p class="track-artist">Cosmic Wanderers</p>
+                    <p class="track-duration">6:24</p>
+                </div>
+                <div class="stream-buttons">
+                    <a href="https://music.youtube.com/" class="stream-btn" target="_blank" rel="noopener noreferrer">YouTube</a>
+                    <a href="https://open.spotify.com/" class="stream-btn" target="_blank" rel="noopener noreferrer">Spotify</a>
+                    <a href="https://music.amazon.com/" class="stream-btn" target="_blank" rel="noopener noreferrer">Amazon</a>
+                    <a href="https://www.deezer.com/" class="stream-btn" target="_blank" rel="noopener noreferrer">Deezer</a>
+                    <a href="https://tidal.com/" class="stream-btn" target="_blank" rel="noopener noreferrer">Tidal</a>
+                    <a href="https://soundcloud.com/" class="stream-btn" target="_blank" rel="noopener noreferrer">SoundCloud</a>
+                </div>
+            </article>
+
+            <!-- Track 6 -->
+            <article class="track-item">
+                <img src="https://placehold.co/80x80/FFD700/000000?text=Album+6" alt="Album Cover 6" class="track-image">
+                <div class="track-info">
+                    <h3 class="track-title">Desert Mirage</h3>
+                    <p class="track-artist">Sahara Dreams</p>
+                    <p class="track-duration">3:56</p>
+                </div>
+                <div class="stream-buttons">
+                    <a href="https://music.youtube.com/" class="stream-btn" target="_blank" rel="noopener noreferrer">YouTube</a>
+                    <a href="https://open.spotify.com/" class="stream-btn" target="_blank" rel="noopener noreferrer">Spotify</a>
+                    <a href="https://music.amazon.com/" class="stream-btn" target="_blank" rel="noopener noreferrer">Amazon</a>
+                    <a href="https://www.deezer.com/" class="stream-btn" target="_blank" rel="noopener noreferrer">Deezer</a>
+                    <a href="https://tidal.com/" class="stream-btn" target="_blank" rel="noopener noreferrer">Tidal</a>
+                    <a href="https://soundcloud.com/" class="stream-btn" target="_blank" rel="noopener noreferrer">SoundCloud</a>
+                </div>
+            </article>
+
+            <!-- Track 7 -->
+            <article class="track-item">
+                <img src="https://placehold.co/80x80/FFD700/000000?text=Album+7" alt="Album Cover 7" class="track-image">
+                <div class="track-info">
+                    <h3 class="track-title">Mountain Echo</h3>
+                    <p class="track-artist">Alpine Souls</p>
+                    <p class="track-duration">4:42</p>
+                </div>
+                <div class="stream-buttons">
+                    <a href="https://music.youtube.com/" class="stream-btn" target="_blank" rel="noopener noreferrer">YouTube</a>
+                    <a href="https://open.spotify.com/" class="stream-btn" target="_blank" rel="noopener noreferrer">Spotify</a>
+                    <a href="https://music.amazon.com/" class="stream-btn" target="_blank" rel="noopener noreferrer">Amazon</a>
+                    <a href="https://www.deezer.com/" class="stream-btn" target="_blank" rel="noopener noreferrer">Deezer</a>
+                    <a href="https://tidal.com/" class="stream-btn" target="_blank" rel="noopener noreferrer">Tidal</a>
+                    <a href="https://soundcloud.com/" class="stream-btn" target="_blank" rel="noopener noreferrer">SoundCloud</a>
+                </div>
+            </article>
+
+            <!-- Track 8 -->
+            <article class="track-item">
+                <img src="https://placehold.co/80x80/FFD700/000000?text=Album+8" alt="Album Cover 8" class="track-image">
+                <div class="track-info">
+                    <h3 class="track-title">Rainy Day Blues</h3>
+                    <p class="track-artist">Storm Chasers</p>
+                    <p class="track-duration">5:03</p>
+                </div>
+                <div class="stream-buttons">
+                    <a href="https://music.youtube.com/" class="stream-btn" target="_blank" rel="noopener noreferrer">YouTube</a>
+                    <a href="https://open.spotify.com/" class="stream-btn" target="_blank" rel="noopener noreferrer">Spotify</a>
+                    <a href="https://music.amazon.com/" class="stream-btn" target="_blank" rel="noopener noreferrer">Amazon</a>
+                    <a href="https://www.deezer.com/" class="stream-btn" target="_blank" rel="noopener noreferrer">Deezer</a>
+                    <a href="https://tidal.com/" class="stream-btn" target="_blank" rel="noopener noreferrer">Tidal</a>
+                    <a href="https://soundcloud.com/" class="stream-btn" target="_blank" rel="noopener noreferrer">SoundCloud</a>
+                </div>
+            </article>
+
+            <!-- Track 9 -->
+            <article class="track-item">
+                <img src="https://placehold.co/80x80/FFD700/000000?text=Album+9" alt="Album Cover 9" class="track-image">
+                <div class="track-info">
+                    <h3 class="track-title">Digital Love</h3>
+                    <p class="track-artist">Cyber Hearts</p>
+                    <p class="track-duration">3:28</p>
+                </div>
+                <div class="stream-buttons">
+                    <a href="https://music.youtube.com/" class="stream-btn" target="_blank" rel="noopener noreferrer">YouTube</a>
+                    <a href="https://open.spotify.com/" class="stream-btn" target="_blank" rel="noopener noreferrer">Spotify</a>
+                    <a href="https://music.amazon.com/" class="stream-btn" target="_blank" rel="noopener noreferrer">Amazon</a>
+                    <a href="https://www.deezer.com/" class="stream-btn" target="_blank" rel="noopener noreferrer">Deezer</a>
+                    <a href="https://tidal.com/" class="stream-btn" target="_blank" rel="noopener noreferrer">Tidal</a>
+                    <a href="https://soundcloud.com/" class="stream-btn" target="_blank" rel="noopener noreferrer">SoundCloud</a>
+                </div>
+            </article>
+
+            <!-- Track 10 -->
+            <article class="track-item">
+                <img src="https://placehold.co/80x80/FFD700/000000?text=Album+10" alt="Album Cover 10" class="track-image">
+                <div class="track-info">
+                    <h3 class="track-title">Golden Hour</h3>
+                    <p class="track-artist">Sunset Boulevard</p>
+                    <p class="track-duration">4:51</p>
+                </div>
+                <div class="stream-buttons">
+                    <a href="https://music.youtube.com/" class="stream-btn" target="_blank" rel="noopener noreferrer">YouTube</a>
+                    <a href="https://open.spotify.com/" class="stream-btn" target="_blank" rel="noopener noreferrer">Spotify</a>
+                    <a href="https://music.amazon.com/" class="stream-btn" target="_blank" rel="noopener noreferrer">Amazon</a>
+                    <a href="https://www.deezer.com/" class="stream-btn" target="_blank" rel="noopener noreferrer">Deezer</a>
+                    <a href="https://tidal.com/" class="stream-btn" target="_blank" rel="noopener noreferrer">Tidal</a>
+                    <a href="https://soundcloud.com/" class="stream-btn" target="_blank" rel="noopener noreferrer">SoundCloud</a>
+                </div>
+            </article>
+        </main>
+
+        <nav class="pagination">
+            <a href="#" class="page-btn active">1</a>
+            <a href="#" class="page-btn">2</a>
+            <a href="#" class="page-btn">3</a>
+            <a href="#" class="page-btn">4</a>
+            <a href="#" class="page-btn">5</a>
+        </nav>
+
+        <footer>
+            <p>&copy; 2026 mymusico. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>
+
